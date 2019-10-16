@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta  name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+	<title>Anderson e Alison - Redes II</title>
+
+	<link href="/../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<!--<script src="dist/js/bootstrap.min.js"></script>-->
+
+	<link href="/../css/custom.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="jumbotron" >
+					<table class="a">
+						<body>
+							<tr>
+								<td><div> <img src="/../img/computacao.png" class="rounded"  width="250" height="225"></div></td>
+								<td><h2 class="display-3">Redes II - VM precise64 com Apache/NginX </h1></td>
+								</tr>
+							</body>
+						</table>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-expand-sm bg-blue navbar-dark">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="/../index.html">Início</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="apachexnginx.html">Apache X NginX</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="instalacao.html">Tutorial Instalacao</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Apache</h2>
+					<p class="text-justify">O Apache é um servidor de código aberto e nome oficial é Apache HTTP Server, mantido pela Apache Software Foundation, e alimenta cerca de 46% de todos os sites hospedados na internet. (dados retirados de julho de 2019). Apache Web Server foi criado em 1995 por Rob McCool, que na época era funcionário da NCSA (National Center for Supercomputing Applications). Ele permite que donos de sites mostrem e mantenham seus conteúdos na internet – daí o nome de “servidor de internet”. Ele é um dos mais antigos e confiáveis servidores de internet. A sua primeira versão, por exemplo, foi lançada em 1995, há mais de 20 anos.
+					</p>
+
+					<p class="text-justify">O Apache é um software multiplataforma. Portanto, ele funciona tanto em servidor Unix quanto em servidor Windows. É altamente personalizável e tem uma estrutura baseada em módulos. Esses módulos permitem que os administradores dos servidores ativem ou desativem novas funcionalidades. Ele tem módulos para segurança, cache, reescrita de URL, autenticação de senhas entre outros e ainda podemos fazer suas próprias configurações de servidor por um arquivo chamado .htaccess
+					</p>
+					<br>
+
+					<h2>NginX</h2>
+					<p class="text-justify">O NGINX, pronunciado como Engine-X, é o servidor web focado em performance. Projetado para trabalhar com a concorrência de milhões de requisições e vem sendo a opção, praticamente unânime, dos novos projetos baseados em WP(WordPress). O servidor foi criado primeiramente como uma ferramenta de escalonamento para o website rambler.ru, em 2002, mas somente em 2004 que ele foi lançado publicamente pelo desenvolvedor russo Igor Sysoev.
+
+						<p class="text-justify">Após ser lançado, o Nginx foi usado principalmente para servir arquivos estáticos e funcionar como um equilibrador de cargas ou proxy reverso à frente das instalações Apache. Ele resolve o conhecido problema c10k, significando que um servidor de internet que usa mecanismos para manipular as solicitações do usuário não consegue gerenciar mais de 10 mil conexões ao mesmo tempo. Conforme a rede evoluiu e a necessidade de ter cada pingo de velocidade e eficiência no uso de hardware surgiu, cada vez mais websites começaram a substituir completamente o Apache pelo Nginx, também devido ao fato de ser um software mais maduro.
+						</p>
+						<br>
+
+						<h2>Apache VS. NginX</h2>
+						<p class="text-justify"> 
+							Ambos são Gratuitos, possui o código aberto e tem uma boa documentação.
+							<br>
+							FACILIDADE NA INTERFACE: Ambos os servidores podem ser adquiridos pré-configurados e prontos para usar, bastando fazer a instalação no servidor.
+							<br>
+							ARQUITETURA: No APACHE pode estar configurando os módulos conforme a sua necessidade diferente do NGINX que com sua configuração padrão já garante trabalho e eficiência e com ênfase em extrair melhor a performance do hardware.
+							<br>
+							MÓDULOS: Os módulos do Apache são muito mais flexíveis, já os módulos do Nginx, embora sejam úteis e forneçam as mesmas capacidades, não oferecem o dinamismo e a comodidade do Apache, fazendo-se necessárias a seleção e a compilação dos módulos no software primário.
+							<br>
+						SITES ESTÁTICOS: Conforme testes feitos pela Speedemy, a performance do Nginx para sites estáticos (páginas da web tradicionais) se mostrou bem superior (2,5 vezes mais rápida) à do Apache em um teste envolvendo 1.000 conexões simultâneas.</p>
+						<br>
+
+						<h4>Comparativo das Vantagens</h4>
+						<table class="table table-hover ">
+							<thead>
+								<tr>
+									<th>Apache</th>
+									<th>Nginx</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Configuração de Módulos para melhor processamento</td>
+									<td>Ênfase em desempenho</td>
+								</tr>
+								<tr>
+									<td>Desempenho mesmo com pouco recurso de hardware</td>
+									<td>Baixo consumo de recursos de hardware</td>
+								</tr>
+								<tr>
+									<td>Compatibilidade com sistemas e plataformas</td>
+									<td>Segurança</td>
+								</tr>
+								<tr>
+									<td>Segurança</td>
+									<td>Facilmente customizável</td>
+								</tr>
+								<tr>
+									<td>Flexibilidade</td>
+									<td>Escalabilidade</td>
+								</tr>
+								<tr>
+									<td>-</td>
+									<td>Melhor performance para requisições simultâneas aceitando até 10.000 logins simultâneos</td>
+								</tr>
+								<tr>
+									<td>-</td>
+									<td>Execução de módulos PHP separado do servidor WEB evitando que o servidor venha a travar pois, o mesmo faz a execução de módulos por tempo de execução e prioridade</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+
+						<h4>Comparativo das Desvantagens</h4>
+						<table class="table table-hover ">
+							<thead>
+								<tr>
+									<th>Apache</th>
+									<th>Nginx</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Não há suporte dedicado</td>
+									<td>Não há suporte dedicado</td>
+								</tr>
+								<tr>
+									<td>Pode não corresponder muito bem ao processar requisições simultaneamente</td>
+									<td>Baixa flexibilidade</td>
+								</tr>
+								<tr>
+									<td>Os bugs podem comprometer a estabilidade do servidor</td>
+									<td>O módulo não é dinâmico</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<br><br>
+						<p class="text-justify">Como na maioria das decisões à se tomar, tem seus prós e contras, nesse caso o Nginx foi projetado para simples configuração e baixo uso de recursos enquanto Apache possui uma ampla documentação por conta de sua idade e estabilidade de mercado e uma excelente configuração de módulos. Ambos são úteis, mas depende muito do que o projeto desenvolvido requisita, se for desempenho, o Nginx, se for flexibilidade para módulos, o Apache, e assim a escolha deve ser realizada.
+						</p>
+
+						<p class="text-justify">De forma geral, nós entendemos que o Apache é o melhor, pois é mais conhecido, tem uma documentação bem maior, e a flexibilidade para uso com vários módulos é o que chama mais atenção para nós.
+						</p>
+						<br>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="jumbotron">
+							<footer>
+								<p class="float-right"><a href="#">Voltar ao top</a></p>  
+								<h5 class="text-left">Redes de Computadores II</h5>
+								<h6 class="text-left">Anderson - <a href="mailto:anderson.ribeiro.r@outlook.com" title="">anderson.ribeiro.r@outlook.com</a></h6>
+								<h6 class="text-left">Alison - <a href="mailto:alisonsassi@outlook.com" title="">alisonsassi@outlook.com</a></h6>
+							</footer>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</body>
+		</html>

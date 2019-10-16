@@ -1,0 +1,15 @@
+# /etc/ufw/ufw.conf
+#
+
+# Essa linha ativa o serviço UFW. Substitua 'yes' por 'no' para desativar
+ENABLED=yes
+
+#Essa linha habilita o acesso remoto(ssh - porta 22) para iniciar pelo 'vagrant up' ou 'vagrant ssh'
+ufw allow 22/tcp
+
+#Essa linha habilita o acesso para servidores web - no caso a nossa página do grupo com explicações
+ufw allow 80/tcp
+
+# Please use the 'ufw' command to set the loglevel. Eg: 'ufw logging medium'.
+# See 'man ufw' for details.
+LOGLEVEL=low

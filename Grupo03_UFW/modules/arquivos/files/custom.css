@@ -1,0 +1,57 @@
+.jumbotron {
+  padding: 1.5rem 1rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  background-color: #E0FFFF;
+  border-radius: 0.6rem;
+}
+
+table.a {
+  table-layout: auto;
+  width: 100%;
+  text-align: center;
+}
+
+table.b {
+  vertical-align: middle;
+}
+
+.bg-blue {
+  background-color: #4682B4 !important;
+  border-radius: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.lista {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 6.5rem;
+  background-color: rgba(86, 61, 124, .15);
+  border: 1px solid rgba(86, 61, 124, .2);
+  list-style-type: decimal;
+}
+
+.row > .column {
+  padding: 80px 1px;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}

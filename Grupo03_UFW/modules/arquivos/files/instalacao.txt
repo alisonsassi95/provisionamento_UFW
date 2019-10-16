@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta  name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+	<title>Anderson e Alison - Redes II</title>
+
+	<link href="/../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<!--<script src="dist/js/bootstrap.min.js"></script>-->
+
+	<link href="/../css/custom.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="jumbotron" >
+					<table class="a">
+						<body>
+							<tr>
+								<td><div> <img src="/../img/computacao.png" class="rounded"  width="250" height="225"></div></td>
+								<td><h2 class="display-3">Redes II - VM precise64 com UFW(Uncomplicated Firewall) </h1></td>
+								</tr>
+							</body>
+						</table>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-expand-sm bg-blue navbar-dark">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+							<a class="nav-link" href="../index.html">Início</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="instalacao.html">Tutorial Instalacao</a>
+						</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Instalação</h1>
+					<h2>Requisitos:</h2>
+					<ol>
+						<li>Vagrant - programa de provisionamento</li>
+						<li>Puppet - linguagem de programação</li>
+						<li>Virtual Box - armazenar e executar o provisionamento</li>
+						<li>Sublime Text - editor de texto gratuito</li>
+					</ol>
+
+					<h3>Instalando o VAGRANT</h3>
+					<ol>
+						<li> $ sudo apt-get update </li>
+						<li> $ sudo apt install vagrant </li>
+						<li> $ vagrant version </li>
+					</ol>
+					<br>
+					<h3>Instalando o PUPPET</h3>
+					<ol>
+						<li> $ sudo apt-get update</li>
+						<li> $ sudo apt-get install puppet</li>
+						<li> $ puppet --version</li>
+					</ol>
+					<br>
+					Use o Instalador do Ubuntu para instalar o “programa VirtualBox” e “Sublime Text”.	
+					<br><br>
+					<p>Disponibilizamos um exemplo de todo o projeto nesse link: <a href="https://github.com/alisonsassi95/provisionamento_UFW">Git Hub - provisionamento_UFW</a>
+					</p>
+
+					<br>
+
+					<h2>Passos para realizar o provisionamento</h2>
+					
+					<ol>
+						<li> Você deve estar na pasta do arquivo “vagrant”</li>
+						<li> Executar no terminal o comando: “vagrant up”</li>
+						<li> Vai começar a executar e então vai perguntar: “NginX: Which interface should the network bridge to?”. Você deve verificar nas 2 linhas acima, em qual rede está para fazer o compartilhamento de IP entre a máquina virtual e a sua e então digite o número equivalente e dê um enter</li>		
+						<li> Você saberá se ocorreu tudo certo quando ver na última mensagem o seguinte:
+						“notice: Finished catalog run in 120.16 seconds” </li>					
+						<li> Então digite no terminal: “vagrant ssh” </li>			
+						<li> Você estará dentro da máquina virtual criada </li>		
+						<li> Digite o comando: “ifconfig”</li>			
+						<li> Verifique o IP da máquina virtual e acesse de qualquer máquina da rede, colocando o IP em um navegador de qualquer máquina na rede. </li>
+						<li> Para sair da máquina digite “exit” </li>
+					</ol>
+
+					<p>Pronto, seu servidor já pode ser utilizado.</p>
+
+					<br>
+
+					<h1>Configurando o UFW</h1> <br>
+					Precisamos basicamente de 3 passos: <br>
+					<ol>
+						<li>Saber se está instalado o UFW no Sistema operacional;</li>
+						<li>Habilitar o UFW com o comando "sudo ufw enable";</li>
+						<li>Configurar as regras necessárias;</li>
+					</ol>
+					<br>
+					Por padrão o UFW está instalado em sistemas operacionais Ubuntu, use o comando:
+					 <p class="pre"> sudo ufw status</p><br>
+					 caso não estiver instalado, ou usando outra versão de S.O. use o comando para instalar:<br>
+					  <p class="pre"> sudo apt-get install ufw -y </p><br> 
+					 
+					Para habilitar o UFW use o comando:
+					 <p class="pre"> sudo ufw enable".</p><br> 
+
+					Definimos que o serviço na porta 22(ssh) será acessado por qualquer um.<br> 
+					Use o comando:
+					<p class="pre"> sudo ufw allow 22/tcp</p><br> 
+					para habilitar o acesso TCP na porta 22.<br> 
+					Também definimos que vamos habilitar o acesso na porta 80(HTTP).
+					use o comando:
+					<p class="pre"> sudo ufw allow 80"</p><br> 
+
+					Após essas configurações estará apto a acessar o site do nosso grupo e fazer um acesso remoto no servidor.<br>
+
+					Para configurar essas regras permanentemente, você pode editar o arquivo: "ufw.config" no caminho "/etc/ufw" e adicione as linhas executadas anteriormente.<br>
+
+					Nós utilizamos o arquivo "default.pp" da pasta "manifests"para aplicar as regras, pois é o primeiro a ser executado pelo Vagrant. <br>
+
+
+					O arquivo ficou assim:<br>
+
+					<p class="pre">
+						Exec { path => [ "/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/sbin:/sbin" ] }<br>
+						<br>
+						# instalando pacotes direto sem uso de modulos<br>
+						package { [<br>
+						    'vim',<br>
+						    'links'<br>
+						  ]:<br>
+						  require => Class["system-update"], <br>
+						  ensure  => 'installed',<br>
+						}<br>
+							<br>
+						<br>
+						# instalando pacotes a partir  uso dos modulos<br>
+						include system-update<br>
+						include nginx<br>
+						include arquivos<br>
+						<br>
+						  exec { 'yes | sudo ufw enable':<br>
+						   path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/sbin:/sbin',<br>
+						   require => Class["arquivos"],<br>
+						  }<br>
+						<br>
+						  exec { 'sudo ufw allow 22/tcp':<br>
+						   path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/sbin:/sbin',<br>
+						   require => Class["arquivos"],<br>
+						  }<br>
+							<br>
+						  exec { 'sudo ufw allow 80/tcp':<br>
+						   path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin:/usr/local/sbin:/sbin',<br>
+						   require => Class["arquivos"],<br>
+						  }<br>
+							<br>
+					</p>
+
+					<h3>Listar as regras:</h3> <br>
+
+                    Para listar todas as regras executamos o comando:<br>
+                    <p class="pre"> sudo ufw status numbered <br></p>
+                    <br>
+
+					<h3>Desabilitar o firewall</h3>
+					<br>
+					<p class="pre"> sudo ufw disable <br></p>
+
+					<h3>Permitir um serviço</h3>
+					<p class="pre">  sudo ufw allow /< protocolo(opcional) <br></p>
+
+					Exemplo: Habilitar todo o tráfego na porta tcp 22 (ssh)<br>
+					sudo ufw allow 22/tcp<br>
+
+					<h3> Bloquear um serviço</h3>
+					<p class="pre"> sudo ufw deny /< protocolo(opcional)<br></p>
+
+					Exemplo: Desabilitar todo o tráfego na porta tcp 22 (ssh)<br>
+					sudo ufw deny 22/tcp<br>
+
+					<h3>Excluir uma regra</h3>
+					<p class="pre"> sudo ufw delete<br></p>
+
+					Exemplo: Deletar <br>
+					sudo ufw delete allow 22/tcp<br>
+
+					<h3>Negar saída para web</h3>
+					<p class="pre">sudo ufw deny out 80<br></p>
+					
+					<h2>Como testar o serviço</h2>
+
+					Após provisionar a máquina, você terá acesso liberado à qualquer pagina web. <br>
+
+					Para testar o serviço execute o comando para excluir a regra que libera acesso web:
+					<p class="pre"> sudo ufw delete allow 80/tcp<br></p>
+					Agora você não poderá acessar mais o site de exemplo que está no IP do servidor.Pois por padrão o UFW bloqueia os serviços automaticamente.<br>
+					Para liberar acesso novamente, execute o comando: <br>
+					<p class="pre"> sudo ufw allow 80/tcp<br></p>
+					Pronto! testado o serviço somente na porta 80(http). Você pode usar esses comandos para qualquer porta. <br>
+
+				</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="jumbotron">
+			<footer>
+				<p class="float-right"><a href="#">Voltar ao top</a></p>  
+				<h5 class="text-left">Redes de Computadores II</h5>
+				<h6 class="text-left">Anderson - <a href="mailto:anderson.ribeiro.r@outlook.com" title="">anderson.ribeiro.r@outlook.com</a></h6>
+				<h6 class="text-left">Alison - <a href="mailto:alisonsassi@outlook.com" title="">alisonsassi@outlook.com</a></h6>
+			</footer>
+		</div>
+	</div>
+</div>
+
+</div>
+</body>
+</html>
